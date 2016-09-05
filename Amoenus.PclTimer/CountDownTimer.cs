@@ -11,6 +11,11 @@ namespace Amoenus.PclTimer
         public event EventHandler IntervalPassed;
 
         /// <summary>
+        /// Occurs when countdown reaches zero.
+        /// </summary>
+        public event EventHandler ReachedZero;
+
+        /// <summary>
         /// The interval between ticks
         /// </summary>
         private TimeSpan _interval;
@@ -83,7 +88,17 @@ namespace Amoenus.PclTimer
         }
 
         /// <summary>
-        /// Starts the timer.
+        /// Raises the coundown reached zero event.
+        /// </summary>
+        private void RaiseReachedZeroEvent()
+        {
+            ReachedZero?.Invoke(this, EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// Starts the timer. 
+        /// Please note that if invoked when current CountDownTime is at 0
+        /// ReachedZero Event will still be fired and the CountDownTime will remain at zero.
         /// </summary>
         public void Start()
         {
@@ -134,10 +149,13 @@ namespace Amoenus.PclTimer
         {
             if (_countDownTime <= TimeSpan.Zero)
             {
+                _countDownTime = TimeSpan.Zero;
+                RaiseReachedZeroEvent();
                 Stop();
             }
             _countDownTime = _countDownTime.Subtract(_interval);
             RaiseIntervalPassedEvent();
         }
+
     }
 }

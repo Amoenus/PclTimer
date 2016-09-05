@@ -3,41 +3,42 @@ using System;
 using System.Threading;
 using Amoenus.PclTimer;
 
-namespace Amoenus.PclTimerTests
+namespace CookWareTests
 {
     [TestFixture]
-    public class CountDownTimerTest
+    public class CountUpTimerTest
     {
         [Test]
         [Category("Unit")]
-        public void CountDownTimer_WhenStarted_CountsDownAndFiresEvent()
+        public void CountUpTimer_WhenStarted_CountsUpAndFiresEvent()
         {
             // Arrange
             const int ExpectedTicks = 2;
+            TimeSpan startTime = TimeSpan.Zero;
             TimeSpan ExpectedSeconds = TimeSpan.FromSeconds(ExpectedTicks);
             int actualTicks = 0;
 
-            var classUnderTest = new CountDownTimer(ExpectedSeconds);
+            var classUnderTest = new CountUpTimer(startTime);
             classUnderTest.IntervalPassed += (o, e) => { actualTicks++; };
 
             // Act
             classUnderTest.Start();
             Thread.Sleep(TimeSpan.FromSeconds(ExpectedTicks * 2));
             // Assert
-            Assert.That(classUnderTest.CurrentTime, Is.LessThan(ExpectedSeconds));
+            Assert.That(classUnderTest.CurrentTime, Is.GreaterThan(startTime));
             Assert.That(actualTicks, Is.GreaterThan(ExpectedTicks));
         }
 
         [Test]
         [Category("Unit")]
-        public void CountDownTimer_WhenProvidedWithTime_InitialisesStopped()
+        public void CountUpTimer_WhenProvidedWithTime_InitialisesStopped()
         {
             // Arrange
             const int ExpectedTicks = 2;
             TimeSpan ExpectedSeconds = TimeSpan.FromSeconds(ExpectedTicks);
 
             // Act
-            var classUnderTest = new CountDownTimer(ExpectedSeconds);
+            var classUnderTest = new CountUpTimer(ExpectedSeconds);
 
             // Assert
             Assert.That(classUnderTest.CurrentTime, Is.EqualTo(ExpectedSeconds));

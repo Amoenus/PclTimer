@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Amoenus.PclTimer</id>
-    <version>0.3.2</version>
+    <version>0.3.3</version>
     <title>Amoenus PCL Timer</title>
     <authors>Romans Pokrovskis</authors>
     <owners></owners>
@@ -10,11 +10,12 @@
       Timer classes to be used in Xamarin PCL.
       
       Includes CountDownTimer that will count down to zero once every second.
+      Includes CountUpTimer that will count up indefinetly once every second
       
-      Constructor takes a timespan for initial time.
+      Constructor takes a timespan for initial time. You can hook up to events for UI updates.
     </description>
     <releaseNotes>
-      Fixed issue where countdown can get passed zero. Added ReachedZero event.
+      Added CountUpTimer
     </releaseNotes>
     <summary>
       Timer classes to be used in Xamarin PCL.

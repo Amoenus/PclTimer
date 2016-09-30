@@ -1,44 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace TestApp.WPF
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, IMainAppView
+    public partial class MainWindow : IMainAppView
     {
-        private TimeSpan _currentTime;
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainWindow" /> class.
+        /// </summary>
+        /// <exception cref="OverflowException"></exception>
+        /// <exception cref="ArgumentException"></exception>
         public MainWindow()
         {
             InitializeComponent();
-            MainViewModel viewModel = new MainViewModel(this, TimeSpan.FromSeconds(5));
+            TimeSpan startTime = TimeSpan.FromSeconds(5);
+            new MainViewModel(this, startTime);
         }
 
-        public string CurrentTimeText
-        {
-            get
-            {
-                return lblCurrentTime.Content.ToString();
-            }
-            private set
-            {
-                lblCurrentTime.Content = value;
-            }
-        }
+        public string CurrentTimeText => LblCurrentTime.Content.ToString();
 
         public event EventHandler ResetClicked;
         public event EventHandler StartClicked;
@@ -46,7 +28,7 @@ namespace TestApp.WPF
 
         public void UpdateCurrentTime(string formattedTimeString)
         {
-            lblCurrentTime.Content = formattedTimeString;
+            LblCurrentTime.Content = formattedTimeString;
         }
 
         private void btnStart_Click(object sender, RoutedEventArgs e)

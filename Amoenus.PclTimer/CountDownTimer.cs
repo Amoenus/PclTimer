@@ -1,8 +1,11 @@
 ﻿using System;
-using System.Threading.Tasks;
 
 namespace Amoenus.PclTimer
 {
+    /// <summary>
+    /// The count down timer.
+    /// </summary>
+    /// <seealso cref="BaseTimer" />
     public class CountDownTimer : BaseTimer
     {
         /// <summary>
@@ -20,8 +23,9 @@ namespace Amoenus.PclTimer
         }
 
         /// <summary>
-        /// Raises the coundown reached zero event.
+        /// Raises the countdown reached zero event.
         /// </summary>
+        /// <exception cref="Exception">A delegate callback throws an exception.</exception>
         private void RaiseReachedZeroEvent()
         {
             ReachedZero?.Invoke(this, EventArgs.Empty);
@@ -30,6 +34,7 @@ namespace Amoenus.PclTimer
         /// <summary>
         /// Counts down the time and raises the IntervalPassed event.
         /// </summary>
+        /// <exception cref="Exception">A delegate callback throws an exception.</exception>
         protected override void CountCurrent()
         {
             if (CurrentTime <= TimeSpan.Zero)
@@ -39,7 +44,8 @@ namespace Amoenus.PclTimer
                 Stop();
             }
             CurrentTime = CurrentTime.Subtract(Interval);
-            RaiseIntervalPassedEvent();
+
+           RaiseIntervalPassedEvent();
         }
     }
 }

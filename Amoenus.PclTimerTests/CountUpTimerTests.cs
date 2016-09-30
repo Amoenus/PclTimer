@@ -1,12 +1,14 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using Amoenus.PclTimer;
+using NUnit.Framework;
 
-namespace CookWareTests
+namespace Amoenus.PclTimerTests
 {
+    [ExcludeFromCodeCoverage]
     [TestFixture]
-    public class CountUpTimerTest
+    public class CountUpTimerTests
     {
         [Test]
         [Category("Unit")]
@@ -15,7 +17,6 @@ namespace CookWareTests
             // Arrange
             const int ExpectedTicks = 2;
             TimeSpan startTime = TimeSpan.Zero;
-            TimeSpan ExpectedSeconds = TimeSpan.FromSeconds(ExpectedTicks);
             int actualTicks = 0;
 
             var classUnderTest = new CountUpTimer(startTime);
@@ -35,13 +36,13 @@ namespace CookWareTests
         {
             // Arrange
             const int ExpectedTicks = 2;
-            TimeSpan ExpectedSeconds = TimeSpan.FromSeconds(ExpectedTicks);
+            TimeSpan expectedSeconds = TimeSpan.FromSeconds(ExpectedTicks);
 
             // Act
-            var classUnderTest = new CountUpTimer(ExpectedSeconds);
+            var classUnderTest = new CountUpTimer(expectedSeconds);
 
             // Assert
-            Assert.That(classUnderTest.CurrentTime, Is.EqualTo(ExpectedSeconds));
+            Assert.That(classUnderTest.CurrentTime, Is.EqualTo(expectedSeconds));
             Assert.That(classUnderTest.IsTimerRunning, Is.False);
             Assert.That(classUnderTest.IsTimerStopped, Is.True);
         }

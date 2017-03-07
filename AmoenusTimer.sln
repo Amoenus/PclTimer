@@ -1,15 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amoenus.PclTimer", "Amoenus.PclTimer\Amoenus.PclTimer.csproj", "{385FBC0E-E7A3-4586-9FF9-35022C623F04}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amoenus.PclTimerTests", "Amoenus.PclTimerTests\Amoenus.PclTimerTests.csproj", "{8EDF4429-251A-416D-BB68-93F227191BCF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amoenus.PclTimer.Packager", "Amoenus.PclTimer.Packager\Amoenus.PclTimer.Packager.csproj", "{0451BAEF-DF2E-4B98-8644-94EE9415E389}"
+	ProjectSection(ProjectDependencies) = postProject
+		{385FBC0E-E7A3-4586-9FF9-35022C623F04} = {385FBC0E-E7A3-4586-9FF9-35022C623F04}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp.WPF", "TestApp.WPF\TestApp.WPF.csproj", "{104F5C21-FC0E-44A6-9E4A-EF320BDC2AD0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0451BAEF-DF2E-4B98-8644-94EE9415E389} = {0451BAEF-DF2E-4B98-8644-94EE9415E389}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

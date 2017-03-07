@@ -40,7 +40,17 @@ namespace Amoenus.PclTimer
         public TimeSpan CurrentTime
         {
             get { return _currentTime; }
-            set { _currentTime = value; }
+            set
+            {
+                if (value >= TimeSpan.Zero)
+                {
+                    _currentTime = value;
+                }
+                else
+                {
+                    _currentTime = TimeSpan.Zero;
+                }
+            }
         }
 
         /// <summary>

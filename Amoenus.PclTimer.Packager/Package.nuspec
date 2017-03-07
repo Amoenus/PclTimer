@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Amoenus.PclTimer</id>
-    <version>0.3.3</version>
+    <version>0.3.9</version>
     <title>Amoenus PCL Timer</title>
     <authors>Romans Pokrovskis</authors>
     <owners></owners>
@@ -32,7 +32,7 @@
     <tags></tags>
   </metadata>
   <files>
-    <file src="lib\" target="lib" />
+    <file src="..\Amoenus.PclTimer\bin\Release\" target="lib" />
     <file src="tools\" target="tools" />
     <file src="content\" target="content" />
   </files>

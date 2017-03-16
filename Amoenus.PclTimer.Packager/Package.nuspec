@@ -33,5 +33,7 @@
   </metadata>
   <files>
     <file src="..\Amoenus.PclTimer\bin\Release\" target="lib" />
+    <file src="tools\" target="tools" />
+    <file src="content\" target="content" />
   </files>
 </package>

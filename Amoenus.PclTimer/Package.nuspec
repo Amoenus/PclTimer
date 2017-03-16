@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Amoenus.PclTimer</id>
-    <version>0.3.9.1</version>
+    <version>$version$</version>
     <title>Amoenus PCL Timer</title>
     <authors>Romans Pokrovskis</authors>
     <owners></owners>

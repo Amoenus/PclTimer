@@ -6,4 +6,4 @@ Includes CountUpTimer that will count up indefinetly once every second
 
 Constructor takes a timespan for initial time. You can hook up to events for UI updates.
 
-[![Build status](https://ci.appveyor.com/api/projects/status/hbl6ktx3av7469cm/branch/master?svg=true)](https://ci.appveyor.com/project/Amoenus/pcltimer/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/hbl6ktx3av7469cm/branch/master?svg=true)](https://ci.appveyor.com/project/Amoenus/pcltimer/branch/master) [![CodeFactor](https://www.codefactor.io/repository/github/amoenus/pcltimer/badge)](https://www.codefactor.io/repository/github/amoenus/pcltimer)

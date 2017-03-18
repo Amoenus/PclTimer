@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amoenus.PclTimer", "Amoenus
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp.WPF", "TestApp.WPF\TestApp.WPF.csproj", "{104F5C21-FC0E-44A6-9E4A-EF320BDC2AD0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amoenus.PclTimerTests", "Amoenus.PclTimerTests\Amoenus.PclTimerTests.csproj", "{8EDF4429-251A-416D-BB68-93F227191BCF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{104F5C21-FC0E-44A6-9E4A-EF320BDC2AD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{104F5C21-FC0E-44A6-9E4A-EF320BDC2AD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{104F5C21-FC0E-44A6-9E4A-EF320BDC2AD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EDF4429-251A-416D-BB68-93F227191BCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EDF4429-251A-416D-BB68-93F227191BCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EDF4429-251A-416D-BB68-93F227191BCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EDF4429-251A-416D-BB68-93F227191BCF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

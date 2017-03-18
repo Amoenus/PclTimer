@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Threading.Tasks;
 
 namespace Amoenus.PclTimer
 {
+    /// <summary>
+    ///     Timer that counts up
+    /// </summary>
+    /// <seealso cref="Amoenus.PclTimer.BaseTimer" />
     public class CountDownTimer : BaseTimer
     {
         /// <summary>
-        /// Occurs when countdown reaches zero.
-        /// </summary>
-        public event EventHandler ReachedZero;
-
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CountDownTimer" /> class. Default tick interval is 1 second
+        ///     Initializes a new instance of the <see cref="CountDownTimer" /> class. Default tick interval is 1 second
         /// </summary>
         /// <param name="startTime">The start time.</param>
         public CountDownTimer(TimeSpan startTime) : base(startTime)
@@ -20,7 +17,12 @@ namespace Amoenus.PclTimer
         }
 
         /// <summary>
-        /// Raises the coundown reached zero event.
+        ///     Occurs when countdown reaches zero.
+        /// </summary>
+        public event EventHandler ReachedZero;
+
+        /// <summary>
+        ///     Raises the countdown reached zero event.
         /// </summary>
         private void RaiseReachedZeroEvent()
         {
@@ -28,7 +30,7 @@ namespace Amoenus.PclTimer
         }
 
         /// <summary>
-        /// Counts down the time and raises the IntervalPassed event.
+        ///     Counts down the time and raises the IntervalPassed event.
         /// </summary>
         protected override void CountCurrent()
         {

@@ -1,19 +1,26 @@
 ﻿using System;
-using Amoenus.PclTimer;
 using System.Windows;
+using Amoenus.PclTimer;
 
 namespace TestApp.WPF
 {
+    /// <summary>
+    /// Apps main view model
+    /// </summary>
+    /// <seealso cref="System.IDisposable" />
     public class MainViewModel : IDisposable
     {
-        private IMainAppView _mainWindow;
-        private TimeSpan _startTime;
-        CountDownTimer _countDownTimer;
+        private readonly CountDownTimer _countDownTimer;
+        private readonly IMainAppView _mainWindow;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainViewModel"/> class.
+        /// </summary>
+        /// <param name="mainWindow">The main window.</param>
+        /// <param name="startTime">The start time.</param>
         public MainViewModel(IMainAppView mainWindow, TimeSpan startTime)
         {
             _mainWindow = mainWindow;
-            _startTime = startTime;
 
             _countDownTimer = new CountDownTimer(startTime);
 
@@ -21,14 +28,18 @@ namespace TestApp.WPF
             PopulateView();
         }
 
-        private void PopulateView()
-        {
-            _mainWindow.UpdateCurrentTime(GetFormattedString());
-        }
-
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, 
+        /// releasing, or resetting unmanaged resources.
+        /// </summary>
         public void Dispose()
         {
             UnsubscribeEvents();
+        }
+
+        private void PopulateView()
+        {
+            _mainWindow.UpdateCurrentTime(GetFormattedString());
         }
 
         private void UnsubscribeEvents()
@@ -49,7 +60,7 @@ namespace TestApp.WPF
             _countDownTimer.ReachedZero += CountDownTimer_ReachedZero;
         }
 
-        private void CountDownTimer_ReachedZero(object sender, EventArgs e)
+        private static void CountDownTimer_ReachedZero(object sender, EventArgs e)
         {
             MessageBox.Show("Zero reached");
         }
@@ -77,8 +88,10 @@ namespace TestApp.WPF
 
         private string GetFormattedString()
         {
-            return $"{_countDownTimer.CurrentTime.Hours.ToString("00")}:{_countDownTimer.CurrentTime.Minutes.ToString("00")}:{_countDownTimer.CurrentTime.Seconds.ToString("00")}";
+            return
+                $"{_countDownTimer.CurrentTime.Hours:00}:" +
+                $"{_countDownTimer.CurrentTime.Minutes:00}:" +
+                $"{_countDownTimer.CurrentTime.Seconds:00}";
         }
-
     }
 }

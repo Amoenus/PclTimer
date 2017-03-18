@@ -1,93 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Amoenus.PclTimer
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public abstract class BaseTimer
     {
         /// <summary>
-        /// Occurs on each tick between specified interval.
+        ///     The interval between ticks
         /// </summary>
-        public event EventHandler IntervalPassed;
+        private readonly TimeSpan _interval;
 
         /// <summary>
-        /// The interval between ticks
+        ///     The current time of the count down
         /// </summary>
-        private TimeSpan _interval;
+        private readonly TimeSpan _startTime;
 
         /// <summary>
-        /// The current time of the count down
-        /// </summary>
-        private TimeSpan _startTime;
-
-        /// <summary>
-        /// The current time of the count down
+        ///     The current time of the count down
         /// </summary>
         private TimeSpan _currentTime;
 
         /// <summary>
-        /// Gets current count down time.
+        ///     Denotes whether the timer is running or not
         /// </summary>
-        /// <value>
-        /// The count down time.
-        /// </value>
-        public TimeSpan CurrentTime
-        {
-            get { return _currentTime; }
-            set
-            {
-                if (value >= TimeSpan.Zero)
-                {
-                    _currentTime = value;
-                }
-                else
-                {
-                    _currentTime = TimeSpan.Zero;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the interval between ticks.
-        /// </summary>
-        /// <value>
-        /// The interval.
-        /// </value>
-        public TimeSpan Interval
-        {
-            get { return _interval; }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether this instance of a timer is currently stopped.
-        /// </summary>
-        /// <value>
-        /// <c>true</c> if this instance of a timer is currently stopped; otherwise, <c>false</c>.
-        /// </value>
-        public bool IsTimerStopped
-        {
-            get { return !_timerRunning; }
-        }
-
-        /// <summary>
-        ///  Gets a value indicating whether this instance of a timer is currently running.
-        /// </summary>
-        /// <value>
-        /// <c>true</c> if this instance of a timer is currently running; otherwise, <c>false</c>.
-        /// </value>
-        public bool IsTimerRunning
-        {
-            get { return _timerRunning; }
-        }
-
-
-        public BaseTimer(TimeSpan startTime)
+        private bool _timerRunning;
+        
+        protected BaseTimer(TimeSpan startTime)
         {
             _interval = TimeSpan.FromSeconds(1);
             _startTime = startTime;
@@ -95,9 +33,45 @@ namespace Amoenus.PclTimer
         }
 
         /// <summary>
-        /// Denotes whether the timer is running or not
+        ///     Gets current count down time.
         /// </summary>
-        private bool _timerRunning;
+        /// <value>
+        ///     The count down time.
+        /// </value>
+        public TimeSpan CurrentTime
+        {
+            get { return _currentTime; }
+            set { _currentTime = value >= TimeSpan.Zero ? value : TimeSpan.Zero; }
+        }
+
+        /// <summary>
+        ///     Gets the interval between ticks.
+        /// </summary>
+        /// <value>
+        ///     The interval.
+        /// </value>
+        public TimeSpan Interval => _interval;
+
+        /// <summary>
+        ///     Gets a value indicating whether this instance of a timer is currently stopped.
+        /// </summary>
+        /// <value>
+        ///     <c>true</c> if this instance of a timer is currently stopped; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsTimerStopped => !_timerRunning;
+
+        /// <summary>
+        ///     Gets a value indicating whether this instance of a timer is currently running.
+        /// </summary>
+        /// <value>
+        ///     <c>true</c> if this instance of a timer is currently running; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsTimerRunning => _timerRunning;
+
+        /// <summary>
+        ///     Occurs on each tick between specified interval.
+        /// </summary>
+        public event EventHandler IntervalPassed;
 
         protected void RaiseIntervalPassedEvent()
         {
@@ -105,9 +79,9 @@ namespace Amoenus.PclTimer
         }
 
         /// <summary>
-        /// Starts the timer. 
-        /// Please note that if invoked when current CountDownTime is at 0
-        /// ReachedZero Event will still be fired and the CountDownTime will remain at zero.
+        ///     Starts the timer.
+        ///     Please note that if invoked when current CountDownTime is at 0
+        ///     ReachedZero Event will still be fired and the CountDownTime will remain at zero.
         /// </summary>
         public void Start()
         {
@@ -119,7 +93,7 @@ namespace Amoenus.PclTimer
         }
 
         /// <summary>
-        /// Pauses the timer.
+        ///     Pauses the timer.
         /// </summary>
         public void Stop()
         {
@@ -127,7 +101,7 @@ namespace Amoenus.PclTimer
         }
 
         /// <summary>
-        /// Stops and resets the timer to initial start time.
+        ///     Stops and resets the timer to initial start time.
         /// </summary>
         public void Reset()
         {
@@ -136,7 +110,7 @@ namespace Amoenus.PclTimer
         }
 
         /// <summary>
-        /// Timer loop that invokes IntervalPassed event and 
+        ///     Timer loop that invokes IntervalPassed event and
         /// </summary>
         private async void RunTimer()
         {
@@ -145,9 +119,7 @@ namespace Amoenus.PclTimer
                 await Task.Delay(_interval);
 
                 if (_timerRunning)
-                {
                     CountCurrent();
-                }
             }
         }
 

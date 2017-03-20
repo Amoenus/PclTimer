@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<package >
+
+<package>
   <metadata>
     <id>Amoenus.PclTimer</id>
     <version>$version$</version>
@@ -8,21 +9,24 @@
     <owners></owners>
     <description>
       Timer classes to be used in Xamarin PCL.
-      
-      Includes CountDownTimer that will count down to zero once every second.
-      Includes CountUpTimer that will count up indefinetly once every second
-      
-      Constructor takes a timespan for initial time. You can hook up to events for UI updates.
+
+      Includes CountDownTimer : ICountDownTimer that will count down to zero once every second.
+      Includes CountUpTimer : IPclTimer that will count up indefinitely once every second
+
+      The constructor takes a timespan for the initial time. You can hook up to events for UI updates.
+
+      Interval is now exposed so you can control the frequency of the ticks
     </description>
     <releaseNotes>
-      Added CountUpTimer
+      Added Interfaces to make unit testing of the code that uses this timer easier and
+      exposed Interval so frequency of the ticks can be controlled
     </releaseNotes>
     <summary>
       Timer classes to be used in Xamarin PCL.
     </summary>
     <language>en-US</language>
-    <projectUrl>https://gitlab.com/motivated.it/Amoenus.PclTimer</projectUrl>
-    <iconUrl>https://gitlab.com/motivated.it/Amoenus.PclTimer/raw/ce0161ee1fb10f43acd90c71eb6a2224bd0cdfd1/PclTimer.png</iconUrl>
+    <projectUrl>https://github.com/Amoenus/PclTimer</projectUrl>
+    <iconUrl>https://github.com/Amoenus/PclTimer/blob/master/PclTimer.png?raw=true</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <licenseUrl>http://unlicense.org/UNLICENSE</licenseUrl>
     <copyright></copyright>

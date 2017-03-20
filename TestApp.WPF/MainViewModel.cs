@@ -10,7 +10,7 @@ namespace TestApp.WPF
     /// <seealso cref="System.IDisposable" />
     public class MainViewModel : IDisposable
     {
-        private readonly CountDownTimer _countDownTimer;
+        private readonly ICountDownTimer _countDownTimer;
         private readonly IMainAppView _mainWindow;
 
         /// <summary>
@@ -24,12 +24,14 @@ namespace TestApp.WPF
 
             _countDownTimer = new CountDownTimer(startTime);
 
+            _countDownTimer.Interval = TimeSpan.FromSeconds(1);
+
             SubscribeEvents();
             PopulateView();
         }
 
         /// <summary>
-        /// Performs application-defined tasks associated with freeing, 
+        /// Performs application-defined tasks associated with freeing,
         /// releasing, or resetting unmanaged resources.
         /// </summary>
         public void Dispose()

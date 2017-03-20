@@ -2,27 +2,29 @@
 using System.Threading;
 using Amoenus.PclTimer;
 using NUnit.Framework;
+using Shouldly;
 
 namespace Amoenus.PclTimerTests
 {
     [TestFixture]
     public class CountUpTimerTests
     {
+        private const int ExpectedTicks = 2;
+
         [Test]
         [Category("Unit")]
         public void CountUpTimer_WhenProvidedWithTime_InitializesStopped()
         {
             // Arrange
-            const int expectedTicks = 2;
-            TimeSpan expectedSeconds = TimeSpan.FromSeconds(expectedTicks);
+            TimeSpan expectedSeconds = TimeSpan.FromSeconds(ExpectedTicks);
 
             // Act
-            var classUnderTest = new CountUpTimer(expectedSeconds);
+            IPclTimer classUnderTest = new CountUpTimer(expectedSeconds);
 
             // Assert
-            Assert.That(classUnderTest.CurrentTime, Is.EqualTo(expectedSeconds));
-            Assert.That(classUnderTest.IsTimerRunning, Is.False);
-            Assert.That(classUnderTest.IsTimerStopped, Is.True);
+            classUnderTest.CurrentTime.ShouldBe(expectedSeconds);
+            classUnderTest.IsTimerRunning.ShouldBeFalse();
+            classUnderTest.IsTimerStopped.ShouldBeTrue();
         }
 
         [Test]
@@ -30,19 +32,19 @@ namespace Amoenus.PclTimerTests
         public void CountUpTimer_WhenStarted_CountsUpAndFiresEvent()
         {
             // Arrange
-            const int expectedTicks = 2;
             TimeSpan startTime = TimeSpan.Zero;
             int actualTicks = 0;
 
-            var classUnderTest = new CountUpTimer(startTime);
+            IPclTimer classUnderTest = new CountUpTimer(startTime);
             classUnderTest.IntervalPassed += (o, e) => { actualTicks++; };
 
             // Act
             classUnderTest.Start();
-            Thread.Sleep(TimeSpan.FromSeconds(expectedTicks * 2));
+            Thread.Sleep(TimeSpan.FromSeconds(ExpectedTicks * 2));
+
             // Assert
-            Assert.That(classUnderTest.CurrentTime, Is.GreaterThan(startTime));
-            Assert.That(actualTicks, Is.GreaterThan(expectedTicks));
+            classUnderTest.CurrentTime.ShouldBeGreaterThan(startTime);
+            actualTicks.ShouldBeGreaterThan(ExpectedTicks);
         }
     }
 }

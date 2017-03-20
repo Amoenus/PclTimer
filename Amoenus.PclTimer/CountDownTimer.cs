@@ -6,7 +6,7 @@ namespace Amoenus.PclTimer
     ///     Timer that counts up
     /// </summary>
     /// <seealso cref="Amoenus.PclTimer.BaseTimer" />
-    public class CountDownTimer : BaseTimer
+    public class CountDownTimer : BaseTimer, ICountDownTimer
     {
         /// <summary>
         ///     Initializes a new instance of the <see cref="CountDownTimer" /> class. Default tick interval is 1 second
@@ -40,6 +40,7 @@ namespace Amoenus.PclTimer
                 RaiseReachedZeroEvent();
                 Stop();
             }
+
             CurrentTime = CurrentTime.Subtract(Interval);
             RaiseIntervalPassedEvent();
         }

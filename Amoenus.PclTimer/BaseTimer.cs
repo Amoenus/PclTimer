@@ -3,13 +3,12 @@ using System.Threading.Tasks;
 
 namespace Amoenus.PclTimer
 {
-    public abstract class BaseTimer
+    /// <summary>
+    /// Base implementation shared by Up and Down timers
+    /// </summary>
+    /// <seealso cref="Amoenus.PclTimer.IPclTimer" />
+    public abstract class BaseTimer : IPclTimer
     {
-        /// <summary>
-        ///     The interval between ticks
-        /// </summary>
-        private readonly TimeSpan _interval;
-
         /// <summary>
         ///     The current time of the count down
         /// </summary>
@@ -24,10 +23,14 @@ namespace Amoenus.PclTimer
         ///     Denotes whether the timer is running or not
         /// </summary>
         private bool _timerRunning;
-        
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseTimer"/> class.
+        /// </summary>
+        /// <param name="startTime">The start time.</param>
         protected BaseTimer(TimeSpan startTime)
         {
-            _interval = TimeSpan.FromSeconds(1);
+            Interval = TimeSpan.FromSeconds(1);
             _startTime = startTime;
             _currentTime = _startTime;
         }
@@ -50,7 +53,7 @@ namespace Amoenus.PclTimer
         /// <value>
         ///     The interval.
         /// </value>
-        public TimeSpan Interval => _interval;
+        public TimeSpan Interval { get; set; }
 
         /// <summary>
         ///     Gets a value indicating whether this instance of a timer is currently stopped.
@@ -73,6 +76,10 @@ namespace Amoenus.PclTimer
         /// </summary>
         public event EventHandler IntervalPassed;
 
+        /// <summary>
+        /// Raises the interval passed event.
+        /// </summary>
+        /// <exception cref="Exception">A delegate callback throws an exception.</exception>
         protected void RaiseIntervalPassedEvent()
         {
             IntervalPassed?.Invoke(this, EventArgs.Empty);
@@ -88,7 +95,7 @@ namespace Amoenus.PclTimer
             if (IsTimerStopped)
             {
                 _timerRunning = true;
-                RunTimer();
+                RunTimerAsync();
             }
         }
 
@@ -112,17 +119,20 @@ namespace Amoenus.PclTimer
         /// <summary>
         ///     Timer loop that invokes IntervalPassed event and
         /// </summary>
-        private async void RunTimer()
+        private async void RunTimerAsync()
         {
             while (_timerRunning)
             {
-                await Task.Delay(_interval);
+                await Task.Delay(Interval).ConfigureAwait(true);
 
                 if (_timerRunning)
                     CountCurrent();
             }
         }
 
+        /// <summary>
+        /// Counts the current time.
+        /// </summary>
         protected abstract void CountCurrent();
     }
 }

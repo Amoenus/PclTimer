@@ -1,13 +1,22 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amoenus.PclTimer", "Amoenus.PclTimer\Amoenus.PclTimer.csproj", "{385FBC0E-E7A3-4586-9FF9-35022C623F04}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp.WPF", "TestApp.WPF\TestApp.WPF.csproj", "{104F5C21-FC0E-44A6-9E4A-EF320BDC2AD0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amoenus.PclTimerTests", "Amoenus.PclTimerTests\Amoenus.PclTimerTests.csproj", "{8EDF4429-251A-416D-BB68-93F227191BCF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{00B6712C-C138-4964-9564-F2B809930E51}"
+	ProjectSection(SolutionItems) = preProject
+		appveyor.yml = appveyor.yml
+		CONTRIBUTING.md = CONTRIBUTING.md
+		LICENSE = LICENSE
+		PclTimer.png = PclTimer.png
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

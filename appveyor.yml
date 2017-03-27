@@ -1,0 +1,23 @@
+version: 0.4.{build}
+image: Visual Studio 2017
+configuration: Release
+clone_folder: C:\Git\PclTimer
+init:
+- cmd:
+before_build:
+- cmd: nuget restore
+build:
+  project: Amoenus.PclTimer
+  publish_nuget: true
+  publish_nuget_symbols: true
+  include_nuget_references: true
+  verbosity: minimal
+before_package:
+- cmd:
+after_build:
+- cmd: nuget pack Amoenus.PclTimer\Package.nuspec -Version %appveyor_build_version%
+after_test:
+- cmd:
+artifacts:
+- path: '**\Amoenus.PclTimer*.nupkg'
+  name: packages

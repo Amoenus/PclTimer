@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/Amoenus/PclTimer.png?label=ready&title=Ready)](https://waffle.io/Amoenus/PclTimer)
 Timer classes to be used in Xamarin PCL.
 
 Includes CountDownTimer that will count down to zero once every second.

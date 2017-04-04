@@ -34,6 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>3</WarningLevel>
+    <DocumentationFile>bin\Release\Amoenus.PclTimer.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CountDownTimer.cs" />

@@ -18,8 +18,7 @@
       Interval is now exposed so you can control the frequency of the ticks
     </description>
     <releaseNotes>
-      Added Interfaces to make unit testing of the code that uses this timer easier and
-      exposed Interval so frequency of the ticks can be controlled
+      Added Documentation file for IntelliSense
     </releaseNotes>
     <summary>
       Timer classes to be used in Xamarin PCL.
@@ -37,6 +36,6 @@
   </metadata>
   <files>
     <file src="..\Amoenus.PclTimer\bin\Release\" target="lib\netstandard1.0" />
-    <file src="..\Amoenus.PclTimer\bin\Release\" target="lib\portable-net403+sl40+win+wp+Xbox40" />	
+    <file src="..\Amoenus.PclTimer\bin\Release\" target="lib\portable-net403+sl40+win+wp+Xbox40" />
   </files>
 </package>
